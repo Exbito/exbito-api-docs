@@ -11,3 +11,5 @@ Get started here: https://apidocs.exbito.com/
 * Exbito Website: https://exbito.com/
 * Exbito Web Application: https://app.exbito.com/
 * Exbito Android Application (Google Play): https://play.google.com/store/apps/details?id=com.exbito.app
+
+This API documentation page was created with [Slate](https://github.com/slatedocs/slate).
