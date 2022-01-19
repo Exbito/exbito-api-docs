@@ -706,60 +706,70 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 </tbody></table>
 <h1 id='errors'>Errors</h1>
+<p>All non-successful responses have status code between 400-499. For the API with more than one error code, you can
+read <code>X-Reason</code> header on the response to find out more info about the error.</p>
+
 <aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
+The `X-Reason` headers might not be avauilable on some errors. But in most case keeping an eye on `X-Reason` header will help you finding the error reason.
 </aside>
 
-<p>The Kittn API uses the following error codes:</p>
+<p>The Exbito API uses the following error codes:</p>
 
 <table><thead>
 <tr>
 <th>Error Code</th>
+<th>X-Reason</th>
 <th>Meaning</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>400</td>
+<td>-</td>
 <td>Bad Request -- Your request is invalid.</td>
 </tr>
 <tr>
 <td>401</td>
+<td>-</td>
 <td>Unauthorized -- Your API key is wrong.</td>
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+<td>-</td>
+<td>Forbidden -- The requested resource is accessible for you.</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
+<td>-</td>
+<td>Not Found -- The specified resource could not be found.</td>
 </tr>
 <tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
+<td>400</td>
+<td>amount-not-in-range</td>
+<td>The provided amount is not acceptable. You can find the min and max of the amount values form the <code>/markets</code> endpoint.</td>
 </tr>
 <tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
+<td>400</td>
+<td>quote-not-in-range</td>
+<td>The provided quote is not acceptable. You can find the min and max of the quote values form the <code>/markets</code> endpoint.</td>
 </tr>
 <tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
+<td>400</td>
+<td>bad-amount-step</td>
+<td>The provided amount must be divisible by <code>amountStep</code>. You can find the step of the amount values form the <code>/markets</code> endpoint.</td>
 </tr>
 <tr>
 <td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+<td>-</td>
+<td>Too Many Requests -- You&#39;re requesting too many times! Slow down!</td>
 </tr>
 <tr>
 <td>500</td>
+<td>-</td>
 <td>Internal Server Error -- We had a problem with our server. Try again later.</td>
 </tr>
 <tr>
 <td>503</td>
+<td>-</td>
 <td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
 </tr>
 </tbody></table>
