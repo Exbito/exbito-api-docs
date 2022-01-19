@@ -12,6 +12,7 @@ toc_footers:
   - <a href='https://play.google.com/store/apps/details?id=com.exbito.app'>Exbito Android App</a>
   - <a href='https://exbito.com/fees'>Exchange fee rates</a>
 includes:
+  - websocket
   - errors
 
 search: true
