@@ -1,22 +1,23 @@
 # Errors
 
+All non-successful responses have status code between 400-499. For the API with more than one error code, you can
+read `X-Reason` header on the response to find out more info about the error.
+
 <aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
+The `X-Reason` headers might not be avauilable on some errors. But in most case keeping an eye on `X-Reason` header will help you finding the error reason.
 </aside>
 
-The Kittn API uses the following error codes:
+The Exbito API uses the following error codes:
 
-
-Error Code | Meaning
----------- | -------
-400 | Bad Request -- Your request is invalid.
-401 | Unauthorized -- Your API key is wrong.
-403 | Forbidden -- The kitten requested is hidden for administrators only.
-404 | Not Found -- The specified kitten could not be found.
-405 | Method Not Allowed -- You tried to access a kitten with an invalid method.
-406 | Not Acceptable -- You requested a format that isn't json.
-410 | Gone -- The kitten requested has been removed from our servers.
-418 | I'm a teapot.
-429 | Too Many Requests -- You're requesting too many kittens! Slow down!
-500 | Internal Server Error -- We had a problem with our server. Try again later.
-503 | Service Unavailable -- We're temporarily offline for maintenance. Please try again later.
+Error Code | X-Reason | Meaning
+---------- | ---------- | -------
+400 | - | Bad Request -- Your request is invalid.
+401 | - | Unauthorized -- Your API key is wrong.
+403 | - | Forbidden -- The requested resource is accessible for you.
+404 | - | Not Found -- The specified resource could not be found.
+400 | amount-not-in-range | The provided amount is not acceptable. You can find the min and max of the amount values form the `/markets` endpoint.
+400 | quote-not-in-range | The provided quote is not acceptable. You can find the min and max of the quote values form the `/markets` endpoint.
+400 | bad-amount-step | The provided amount must be divisible by `amountStep`. You can find the step of the amount values form the `/markets` endpoint.
+429 | - | Too Many Requests -- You're requesting too many times! Slow down!
+500 | - | Internal Server Error -- We had a problem with our server. Try again later.
+503 | - | Service Unavailable -- We're temporarily offline for maintenance. Please try again later.
