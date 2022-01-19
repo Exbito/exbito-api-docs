@@ -46,25 +46,266 @@ You must replace <code>MY_API_KEY</code> and <code>MY_API_SECRET</code> with you
 Please NEVER share your API secret with anyone!
 </aside>
 
-## Get All Kittens
+# Public endpoints
+
+## Get All Markets
 
 ```python
-import kittn
+import requests
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
+requests.request(
+  'GET',
+  f'https://exbito.com/apiv2/markets'
+).json()
 ```
 
 ```shell
-curl "http://example.com/api/kittens" \
-  -H "Authorization: meowmeowmeow"
+curl "https://exbito.com/apiv2/markets"
 ```
 
 ```javascript
-const kittn = require('kittn');
+const axios = require('axios');
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+axios.get('https://exbito.com/apiv2/markets')
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "name": "BTC_USDT",
+    "minAmount": "0.00001000",
+    "baseCurrencySymbol": "BTC",
+    "quoteCurrencySymbol": "USDT",
+    "buyAmountMin": "0.00010000",
+    "buyAmountMax": "10.00000000",
+    "sellAmountMin": "0.00010000",
+    "sellAmountMax": "10.00000000",
+    "quoteMin": "10.000000",
+    "quoteMax": "10000000.000000",
+    "isVisible": true,
+    "isEnable": true,
+    "defaultDepthInterval": "10.000000",
+    "priceStep": "1.000000",
+    "amountStep": "0.00001000",
+    "depthIntervalList": [
+      "0",
+      "10.000000",
+      "100.000000",
+      "1000.000000"
+    ]
+  },
+  {
+    "name": "ETH_USDT",
+    "minAmount": "0.000100000000000000",
+    "baseCurrencySymbol": "ETH",
+    "quoteCurrencySymbol": "USDT",
+    "buyAmountMin": "0.001000000000000000",
+    "buyAmountMax": "100.000000000000000000",
+    "sellAmountMin": "0.001000000000000000",
+    "sellAmountMax": "100.000000000000000000",
+    "quoteMin": "10.000000",
+    "quoteMax": "10000000.000000",
+    "isVisible": true,
+    "isEnable": true,
+    "defaultDepthInterval": "1.000000",
+    "priceStep": "1.000000",
+    "amountStep": "0.000100000000000000",
+    "depthIntervalList": [
+      "0",
+      "1.000000",
+      "10.000000",
+      "100.000000"
+    ]
+  }
+]
+```
+
+This endpoint retrieves all markets.
+
+### HTTP Request
+
+`GET https://exbito.com/apiv2/markets`
+
+<aside class="notice">
+The rate-limit for this endpoint is 10 req/min.
+</aside>
+
+## Get a Specific Market
+
+```python
+import requests
+
+requests.request(
+  'GET',
+  f'https://exbito.com/apiv2/markets/BTC_USDT'
+).json()
+```
+
+```shell
+curl "https://exbito.com/apiv2/markets/BTC_USDT"
+```
+
+```javascript
+const axios = require('axios');
+
+axios.get('https://exbito.com/apiv2/markets/BTC_USDT')
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "name": "BTC_USDT",
+    "minAmount": "0.00001000",
+    "baseCurrencySymbol": "BTC",
+    "quoteCurrencySymbol": "USDT",
+    "buyAmountMin": "0.00010000",
+    "buyAmountMax": "10.00000000",
+    "sellAmountMin": "0.00010000",
+    "sellAmountMax": "10.00000000",
+    "quoteMin": "10.000000",
+    "quoteMax": "10000000.000000",
+    "isVisible": true,
+    "isEnable": true,
+    "defaultDepthInterval": "10.000000",
+    "priceStep": "1.000000",
+    "amountStep": "0.00001000",
+    "depthIntervalList": [
+      "0",
+      "10.000000",
+      "100.000000",
+      "1000.000000"
+    ]
+  }
+]
+```
+
+This endpoint retrieves one single markets.
+
+### HTTP Request
+
+`GET https://exbito.com/apiv2/markets`
+
+<aside class="notice">
+The rate-limit for this endpoint is 10 req/min.
+</aside>
+
+## Get All Currencies
+
+```python
+import requests
+
+requests.request(
+  'GET',
+  f'https://exbito.com/apiv2/currencies'
+).json()
+```
+
+```shell
+curl "https://exbito.com/apiv2/currencies"
+```
+
+```javascript
+const axios = require('axios');
+
+axios.get('https://exbito.com/apiv2/currencies')
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "name": "BTC_USDT",
+    "minAmount": "0.00001000",
+    "baseCurrencySymbol": "BTC",
+    "quoteCurrencySymbol": "USDT",
+    "buyAmountMin": "0.00010000",
+    "buyAmountMax": "10.00000000",
+    "sellAmountMin": "0.00010000",
+    "sellAmountMax": "10.00000000",
+    "quoteMin": "10.000000",
+    "quoteMax": "10000000.000000",
+    "isVisible": true,
+    "isEnable": true,
+    "defaultDepthInterval": "10.000000",
+    "priceStep": "1.000000",
+    "amountStep": "0.00001000",
+    "depthIntervalList": [
+      "0",
+      "10.000000",
+      "100.000000",
+      "1000.000000"
+    ]
+  },
+  {
+    "name": "ETH_USDT",
+    "minAmount": "0.000100000000000000",
+    "baseCurrencySymbol": "ETH",
+    "quoteCurrencySymbol": "USDT",
+    "buyAmountMin": "0.001000000000000000",
+    "buyAmountMax": "100.000000000000000000",
+    "sellAmountMin": "0.001000000000000000",
+    "sellAmountMax": "100.000000000000000000",
+    "quoteMin": "10.000000",
+    "quoteMax": "10000000.000000",
+    "isVisible": true,
+    "isEnable": true,
+    "defaultDepthInterval": "1.000000",
+    "priceStep": "1.000000",
+    "amountStep": "0.000100000000000000",
+    "depthIntervalList": [
+      "0",
+      "1.000000",
+      "10.000000",
+      "100.000000"
+    ]
+  }
+]
+```
+
+This endpoint retrieves all currencies.
+
+### HTTP Request
+
+`GET https://exbito.com/apiv2/markets`
+
+<aside class="notice">
+The rate-limit for this endpoint is 10 req/min.
+</aside>
+
+# Private endpoints
+
+## Get All Markets
+
+```python
+import requests
+
+requests.request(
+  'GET',
+  f'https://exbito.com/apiv2/markets',
+  headers={'X-Api-Key': MY_API_KEY, 'X-Api-Secret': MY_API_SECRET}
+).json()
+```
+
+```shell
+curl "https://exbito.com/apiv2/markets" \
+  -H "X-Api-Key: $MY_API_KEY" \
+  -H "X-Api-Secret: $MY_API_SECRET"
+```
+
+```javascript
+const axios = require('axios');
+
+axios.get('https://exbito.com/apiv2/markets', {
+  headers: {
+    'X-Api-Key': MY_API_KEY,
+    'X-Api-Secret': MY_API_SECRET,
+  }
+})
 ```
 
 > The above command returns JSON structured like this:
