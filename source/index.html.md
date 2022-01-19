@@ -19,52 +19,31 @@ code_clipboard: true
 
 meta:
   - name: description
-    content: Documentation for the Kittn API
+    content: Documentation for the Exbito API
 ---
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
-
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Welcome to the Exbito API! You can use our API to access Exbito API endpoints.
 
 # Authentication
 
-> To authorize, use this code:
+Exbito uses `API_KEY` and `API_SECRET` keys to allow access to the API. You can register a new API key at the [profile settings -> API keys](https://app.exbito.com/more/api).
 
-```python
-import kittn
+Exbito expects for the both `API_KEY` and `API_SECRET` to be included in all API requests to the server in a header that looks like the following:
 
-api = kittn.authorize('meowmeowmeow')
 ```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here" \
-  -H "Authorization: meowmeowmeow"
+X-Api-Key: MY_API_KEY
+X-Api-Secret: MY_API_SECRET
 ```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>MY_API_KEY</code> and <code>MY_API_SECRET</code> with your personal API key and secret.
 </aside>
 
-# Kittens
+<aside class="notice">
+Please NEVER share your API secret with anyone!
+</aside>
 
 ## Get All Kittens
 
