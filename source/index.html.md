@@ -57,18 +57,18 @@ import requests
 
 requests.request(
   'GET',
-  f'https://exbito.com/apiv2/markets'
+  f'https://api.exbito.com/apiv2/markets'
 ).json()
 ```
 
 ```shell
-curl "https://exbito.com/apiv2/markets"
+curl "https://api.exbito.com/apiv2/markets"
 ```
 
 ```javascript
 const axios = require('axios');
 
-axios.get('https://exbito.com/apiv2/markets')
+axios.get('https://api.exbito.com/apiv2/markets')
 ```
 
 > The above command returns JSON structured like this:
@@ -128,7 +128,7 @@ This endpoint retrieves all markets.
 
 ### HTTP Request
 
-`GET https://exbito.com/apiv2/markets`
+`GET https://api.exbito.com/apiv2/markets`
 
 <aside class="notice">
 The rate-limit for this endpoint is 10 req/min.
@@ -141,18 +141,18 @@ import requests
 
 requests.request(
   'GET',
-  f'https://exbito.com/apiv2/markets/BTC_USDT'
+  f'https://api.exbito.com/apiv2/markets/BTC_USDT'
 ).json()
 ```
 
 ```shell
-curl "https://exbito.com/apiv2/markets/BTC_USDT"
+curl "https://api.exbito.com/apiv2/markets/BTC_USDT"
 ```
 
 ```javascript
 const axios = require('axios');
 
-axios.get('https://exbito.com/apiv2/markets/BTC_USDT')
+axios.get('https://api.exbito.com/apiv2/markets/BTC_USDT')
 ```
 
 > The above command returns JSON structured like this:
@@ -189,7 +189,7 @@ This endpoint retrieves one single markets.
 
 ### HTTP Request
 
-`GET https://exbito.com/apiv2/markets`
+`GET https://api.exbito.com/apiv2/markets`
 
 <aside class="notice">
 The rate-limit for this endpoint is 10 req/min.
@@ -202,18 +202,18 @@ import requests
 
 requests.request(
   'GET',
-  f'https://exbito.com/apiv2/currencies'
+  f'https://api.exbito.com/apiv2/currencies'
 ).json()
 ```
 
 ```shell
-curl "https://exbito.com/apiv2/currencies"
+curl "https://api.exbito.com/apiv2/currencies"
 ```
 
 ```javascript
 const axios = require('axios');
 
-axios.get('https://exbito.com/apiv2/currencies')
+axios.get('https://api.exbito.com/apiv2/currencies')
 ```
 
 > The above command returns JSON structured like this:
@@ -273,7 +273,7 @@ This endpoint retrieves all currencies.
 
 ### HTTP Request
 
-`GET https://exbito.com/apiv2/markets`
+`GET https://api.exbito.com/apiv2/markets`
 
 <aside class="notice">
 The rate-limit for this endpoint is 10 req/min.
@@ -288,13 +288,13 @@ import requests
 
 requests.request(
   'GET',
-  f'https://exbito.com/apiv2/markets',
+  f'https://api.exbito.com/apiv2/markets',
   headers={'X-Api-Key': MY_API_KEY, 'X-Api-Secret': MY_API_SECRET}
 ).json()
 ```
 
 ```shell
-curl "https://exbito.com/apiv2/markets" \
+curl "https://api.exbito.com/apiv2/markets" \
   -H "X-Api-Key: $MY_API_KEY" \
   -H "X-Api-Secret: $MY_API_SECRET"
 ```
@@ -302,7 +302,7 @@ curl "https://exbito.com/apiv2/markets" \
 ```javascript
 const axios = require('axios');
 
-axios.get('https://exbito.com/apiv2/markets', {
+axios.get('https://api.exbito.com/apiv2/markets', {
   headers: {
     'X-Api-Key': MY_API_KEY,
     'X-Api-Secret': MY_API_SECRET,
