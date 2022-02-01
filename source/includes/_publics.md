@@ -549,7 +549,7 @@ MARKET_NAME | The Symbol of the market (fully uppercase, underscore delimited) (
 
 Parameter | Default | Description
 --------- | ------- | -----------
-interval | default_depth_interval | Aggregated the order based on the price
+interval | default_depth_interval | Aggregate orders based on the price
 limit | 10 | The maximum number of records on each side (max: 100)
 
 <aside class="notice">
