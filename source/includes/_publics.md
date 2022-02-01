@@ -412,3 +412,149 @@ Pleas note that:
 * The `end` , `start` and `interval` must be all positive integer
 
 </aside>
+
+## Get Market's Order Book (Depth)
+
+```python
+import requests
+
+requests.request(
+  'GET',
+  f'https://api.exbito.com/apiv2/markets/BTC_USDT/depth?interval=0&limit=10'
+).json()
+```
+
+```shell
+curl "https://api.exbito.com/apiv2/markets/BTC_USDT/depth?interval=0&limit=10"
+```
+
+```javascript
+const axios = require('axios');
+
+axios.get('https://api.exbito.com/apiv2/markets/BTC_USDT/depth?interval=0&limit=10')
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "asks": [
+    {
+      "price": "38529.000000",
+      "amount": "0.00105000"
+    },
+    {
+      "price": "38583.000000",
+      "amount": "0.00098130"
+    },
+    {
+      "price": "38723.000000",
+      "amount": "0.00160400"
+    },
+    {
+      "price": "38770.000000",
+      "amount": "0.00194380"
+    },
+    {
+      "price": "38979.000000",
+      "amount": "0.01766240"
+    },
+    {
+      "price": "38995.000000",
+      "amount": "0.02932440"
+    },
+    {
+      "price": "39076.000000",
+      "amount": "0.23761600"
+    },
+    {
+      "price": "39077.000000",
+      "amount": "0.00156360"
+    },
+    {
+      "price": "39110.000000",
+      "amount": "0.40320530"
+    },
+    {
+      "price": "39122.000000",
+      "amount": "0.08285070"
+    }
+  ],
+  "bids": [
+    {
+      "price": "38148.000000",
+      "amount": "0.00131280"
+    },
+    {
+      "price": "38138.000000",
+      "amount": "0.00135230"
+    },
+    {
+      "price": "37745.000000",
+      "amount": "0.00155740"
+    },
+    {
+      "price": "37704.000000",
+      "amount": "0.00200920"
+    },
+    {
+      "price": "37658.000000",
+      "amount": "0.02932210"
+    },
+    {
+      "price": "37638.000000",
+      "amount": "0.01766010"
+    },
+    {
+      "price": "37604.000000",
+      "amount": "0.23756770"
+    },
+    {
+      "price": "37595.000000",
+      "amount": "0.04914760"
+    },
+    {
+      "price": "37592.000000",
+      "amount": "0.08286670"
+    },
+    {
+      "price": "37553.000000",
+      "amount": "0.00247630"
+    }
+  ]
+}
+```
+
+This endpoints returns the current Order Book of the market (e.g. Market Depth)
+
+### HTTP Request
+
+`GET https://api.exbito.com/apiv2/markets/<MARKET_NAME>/depth`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+MARKET_NAME | The Symbol of the market (fully uppercase, underscore delimited) (Example: BTC_USDT)
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+interval | default_depth_interval | Aggregated the order based on the price
+limit | 10 | The maximum number of records on each side (max: 100)
+
+<aside class="notice">
+This api return the realtime/fresh data.
+</aside>
+
+<aside class="warning">
+Pleas note that:
+
+* If you want to get all orders, you MUST send the `0` as the `interval` parameter explicitly. Otherwise, the result
+  will be aggregated and non-accurate.
+* The `interval` value must be formatted with the exact precision of the QuoteCurrency (For example, in `BTC_USDT`
+  market, quote currency is `USDT`, the smallestUnitScale of the `USDT` which is retreivable from the `/currencies`
+  endpoint, is currently `-6`, so you must send it like `10.000000`. Pleas note that the trailing zeros ARE IMPORTANT!)
+
+</aside>
