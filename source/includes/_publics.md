@@ -402,15 +402,23 @@ This endpoint might not return the fresh/relatime data. Please do not use this e
 </aside>
 
 <aside class="warning">
-Pleas note that:
+Pleas note that the `interval` MUST BE a multiple of 60
+</aside>
 
-* Interval MUST BE a multiple of 60
-* The maximum candles number is 1000 (You have to adjust the start and the end parameters to meet this limit)
-* The start and end timestamps are base on UTC timezone and [UnixTime](https://en.wikipedia.org/wiki/Unix_time)
-  standard.
-* The `end` value must be greater than `start`
-* The `end` , `start` and `interval` must be all positive integer
+<aside class="warning">
+The maximum candles number is 1000 (You have to adjust the start and the end parameters to meet this limit)
+</aside>
 
+<aside class="warning">
+The start and end timestamps are base on UTC timezone and [UnixTime](https://en.wikipedia.org/wiki/Unix_time) standard.
+</aside>
+
+<aside class="warning">
+The `end` value must be greater than `start`
+</aside>
+
+<aside class="warning">
+The `end` , `start` and `interval` must be all positive integer
 </aside>
 
 ## Get Market's Order Book (Depth)
@@ -549,12 +557,9 @@ This api return the realtime/fresh data.
 </aside>
 
 <aside class="warning">
-Pleas note that:
+If you want to get all orders, you MUST send the `0` as the `interval` parameter explicitly. Otherwise, the result will be aggregated and non-accurate.
+</aside>
 
-* If you want to get all orders, you MUST send the `0` as the `interval` parameter explicitly. Otherwise, the result
-  will be aggregated and non-accurate.
-* The `interval` value must be formatted with the exact precision of the QuoteCurrency (For example, in `BTC_USDT`
-  market, quote currency is `USDT`, the smallestUnitScale of the `USDT` which is retreivable from the `/currencies`
-  endpoint, is currently `-6`, so you must send it like `10.000000`. Pleas note that the trailing zeros ARE IMPORTANT!)
-
+<aside class="warning">
+The `interval` value must be formatted with the exact precision of the QuoteCurrency (For example, in `BTC_USDT` market, quote currency is `USDT`, the smallestUnitScale of the `USDT` which is retreivable from the `/currencies` endpoint, is currently `-6`, so you must send it like `10.000000`. Pleas note that the trailing zeros ARE IMPORTANT!)
 </aside>
