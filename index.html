@@ -625,12 +625,12 @@ This api return the realtime/fresh data.
 
 <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span>
   <span class="s">'GET'</span><span class="p">,</span>
-  <span class="sa">f</span><span class="s">'https://api.exbito.com/apiv2/markets/BTC_USDT/status'</span>
+  <span class="sa">f</span><span class="s">'https://api.exbito.com/apiv2/markets/BTC_USDT/status?period=86400'</span>
 <span class="p">).</span><span class="n">json</span><span class="p">()</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.exbito.com/apiv2/markets/BTC_USDT/status"</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.exbito.com/apiv2/markets/BTC_USDT/status?period=86400"</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
 
-<span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.exbito.com/apiv2/markets/BTC_USDT/status</span><span class="dl">'</span><span class="p">)</span>
+<span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.exbito.com/apiv2/markets/BTC_USDT/status?period=86400</span><span class="dl">'</span><span class="p">)</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
