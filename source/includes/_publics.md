@@ -282,18 +282,18 @@ import requests
 
 requests.request(
   'GET',
-  f'https://api.exbito.com/apiv2/markets/BTC_USDT/status'
+  f'https://api.exbito.com/apiv2/markets/BTC_USDT/status?period=86400'
 ).json()
 ```
 
 ```shell
-curl "https://api.exbito.com/apiv2/markets/BTC_USDT/status"
+curl "https://api.exbito.com/apiv2/markets/BTC_USDT/status?period=86400"
 ```
 
 ```javascript
 const axios = require('axios');
 
-axios.get('https://api.exbito.com/apiv2/markets/BTC_USDT/status')
+axios.get('https://api.exbito.com/apiv2/markets/BTC_USDT/status?period=86400')
 ```
 
 > The above command returns JSON structured like this:
