@@ -1,32 +1,24 @@
 # Private endpoints
 
-## Get All Markets
+## Get a Specific Market
 
 ```python
 import requests
 
 requests.request(
   'GET',
-  f'https://api.exbito.com/apiv2/markets',
-  headers={'X-Api-Key': MY_API_KEY, 'X-Api-Secret': MY_API_SECRET}
+  f'https://api.exbito.com/apiv2/markets/BTC_USDT'
 ).json()
 ```
 
 ```shell
-curl "https://api.exbito.com/apiv2/markets" \
-  -H "X-Api-Key: $MY_API_KEY" \
-  -H "X-Api-Secret: $MY_API_SECRET"
+curl "https://api.exbito.com/apiv2/markets/BTC_USDT"
 ```
 
 ```javascript
 const axios = require('axios');
 
-axios.get('https://api.exbito.com/apiv2/markets', {
-  headers: {
-    'X-Api-Key': MY_API_KEY,
-    'X-Api-Secret': MY_API_SECRET,
-  }
-})
+axios.get('https://api.exbito.com/apiv2/markets/BTC_USDT')
 ```
 
 > The above command returns JSON structured like this:
@@ -34,35 +26,37 @@ axios.get('https://api.exbito.com/apiv2/markets', {
 ```json
 [
   {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+    "name": "BTC_USDT",
+    "minAmount": "0.00001000",
+    "baseCurrencySymbol": "BTC",
+    "quoteCurrencySymbol": "USDT",
+    "buyAmountMin": "0.00010000",
+    "buyAmountMax": "10.00000000",
+    "sellAmountMin": "0.00010000",
+    "sellAmountMax": "10.00000000",
+    "quoteMin": "10.000000",
+    "quoteMax": "10000000.000000",
+    "isVisible": true,
+    "isEnable": true,
+    "defaultDepthInterval": "10.000000",
+    "priceStep": "1.000000",
+    "amountStep": "0.00001000",
+    "depthIntervalList": [
+      "0",
+      "10.000000",
+      "100.000000",
+      "1000.000000"
+    ]
   }
 ]
 ```
 
-This endpoint retrieves all kittens.
+This endpoint retrieves one single markets.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`GET https://api.exbito.com/apiv2/markets`
 
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+<aside class="notice">
+The rate-limit for this endpoint is 10 req/min.
 </aside>
