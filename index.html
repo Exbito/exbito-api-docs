@@ -333,6 +333,15 @@
                   <li>
                     <a href="#get-all-currencies" class="toc-h2 toc-link" data-title="Get All Currencies">Get All Currencies</a>
                   </li>
+                  <li>
+                    <a href="#get-market-39-s-last-price" class="toc-h2 toc-link" data-title="Get Market's Last Price">Get Market's Last Price</a>
+                  </li>
+                  <li>
+                    <a href="#get-market-39-s-status" class="toc-h2 toc-link" data-title="Get Market's Status">Get Market's Status</a>
+                  </li>
+                  <li>
+                    <a href="#get-market-39-s-kline-e-g-candlestick-ohlc" class="toc-h2 toc-link" data-title="Get Market's KLine (e.g. Candlestick / OHLC)">Get Market's KLine (e.g. Candlestick / OHLC)</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -576,6 +585,190 @@ The rate-limit for this endpoint is 10 req/min.
 
 <aside class="notice">
 The rate-limit for this endpoint is 10 req/min.
+</aside>
+<h2 id='get-market-39-s-last-price'>Get Market&#39;s Last Price</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span>
+  <span class="s">'GET'</span><span class="p">,</span>
+  <span class="sa">f</span><span class="s">'https://api.exbito.com/apiv2/markets/BTC_USDT/last'</span>
+<span class="p">).</span><span class="n">json</span><span class="p">()</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.exbito.com/apiv2/markets/BTC_USDT/last"</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.exbito.com/apiv2/markets/BTC_USDT/last</span><span class="dl">'</span><span class="p">)</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"38265.840000"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoints returns the latest price of a market.</p>
+
+<aside class="notice">
+This api return the realtime/fresh data.
+</aside>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>GET https://api.exbito.com/apiv2/markets/&lt;MARKET_NAME&gt;/last</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>MARKET_NAME</td>
+<td>The Symbol of the market (fully uppercase, underscore delimited) (Example: BTC_USDT)</td>
+</tr>
+</tbody></table>
+<h2 id='get-market-39-s-status'>Get Market&#39;s Status</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span>
+  <span class="s">'GET'</span><span class="p">,</span>
+  <span class="sa">f</span><span class="s">'https://api.exbito.com/apiv2/markets/BTC_USDT/status'</span>
+<span class="p">).</span><span class="n">json</span><span class="p">()</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.exbito.com/apiv2/markets/BTC_USDT/status"</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.exbito.com/apiv2/markets/BTC_USDT/status</span><span class="dl">'</span><span class="p">)</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"37041.010000"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"high"</span><span class="p">:</span><span class="w"> </span><span class="s2">"38706.290000"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"low"</span><span class="p">:</span><span class="w"> </span><span class="s2">"36863.990000"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"close"</span><span class="p">:</span><span class="w"> </span><span class="s2">"38287.790000"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"volume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.34927867"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"deal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51058.168482"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"38287.790000"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"period"</span><span class="p">:</span><span class="w"> </span><span class="mi">86400</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoints returns the status of a market.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>GET https://api.exbito.com/apiv2/markets/&lt;MARKET_NAME&gt;/status</code></p>
+<h3 id='url-parameters-2'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>MARKET_NAME</td>
+<td>The Symbol of the market (fully uppercase, underscore delimited) (Example: BTC_USDT)</td>
+</tr>
+</tbody></table>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>period</td>
+<td>-</td>
+<td>The period, in seconds</td>
+</tr>
+</tbody></table>
+<h2 id='get-market-39-s-kline-e-g-candlestick-ohlc'>Get Market&#39;s KLine (e.g. Candlestick / OHLC)</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span>
+  <span class="s">'GET'</span><span class="p">,</span>
+  <span class="sa">f</span><span class="s">'https://api.exbito.com/apiv2/markets/BTC_USDT/kline?start=1641820000&amp;end=1642520000&amp;interval=3600'</span>
+<span class="p">).</span><span class="n">json</span><span class="p">()</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.exbito.com/apiv2/markets/BTC_USDT/kline?start=1641820000&amp;end=1642520000&amp;interval=3600"</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.exbito.com/apiv2/markets/BTC_USDT/kline?start=1641820000&amp;end=1642520000&amp;interval=3600</span><span class="dl">'</span><span class="p">)</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"market"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1641819600</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"o"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40923.360000"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"h"</span><span class="p">:</span><span class="w"> </span><span class="s2">"41046.680000"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"l"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40757.970000"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"c"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40757.970000"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"volume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.06765753"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.27665754"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"market"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1641823200</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"o"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40778.000000"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"h"</span><span class="p">:</span><span class="w"> </span><span class="s2">"41185.080000"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"l"</span><span class="p">:</span><span class="w"> </span><span class="s2">"39468.000000"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"c"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40768.530000"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"volume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.07010710"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.28329002"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div>
+<p>This endpoints returns the kline of a market. (e.g. Candlestick / OHLC)</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>GET https://api.exbito.com/apiv2/markets/&lt;MARKET_NAME&gt;/kline</code></p>
+<h3 id='url-parameters-3'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>MARKET_NAME</td>
+<td>The Symbol of the market (fully uppercase, underscore delimited) (Example: BTC_USDT)</td>
+</tr>
+</tbody></table>
+<h3 id='query-parameters-2'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>interval</td>
+<td>-</td>
+<td>The duration of each candle, in seconds (Sample: 3600) MUST BE a multiple of 60</td>
+</tr>
+<tr>
+<td>start</td>
+<td>-</td>
+<td>The epoch time of the start of the period (Sample: 1641820000)</td>
+</tr>
+<tr>
+<td>end</td>
+<td>-</td>
+<td>The epoch time of the end of the period (Sample: 1642520000)</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">
+This endpoint might not return the fresh/relatime data. Please do not use this endpoint for the realtime usages.
+</aside>
+
+<aside class="warning">
+Pleas note that:
+
+* Interval MUST BE a multiple of 60
+* The maximum candles number is 1000 (You have to adjust the start and the end parameters to meet this limit)
+* The start and end timestamps are base on UTC timezone and [UnixTime](https://en.wikipedia.org/wiki/Unix_time)
+  standard.
+* The `end` value must be greater than `start`
+* The `end` , `start` and `interval` must be all positive integer
+
 </aside>
 <h1 id='private-endpoints'>Private endpoints</h1><h2 id='get-all-markets'>Get All Markets</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
