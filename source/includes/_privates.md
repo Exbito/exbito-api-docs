@@ -95,18 +95,13 @@ import requests
 
 requests.request(
   'CANCEL',
-  f'https://api.exbito.com/apiv2/orders/12345',
+  f'https://api.exbito.com/apiv2/orders/12345?marketName=BTC_USDT',
   headers={'X-Api-Key': MY_API_KEY, 'X-Api-Secret': MY_API_SECRET},
-  params={
-    'marketName': 'BTC_USDT',
-  }
 ).json()
 ```
 
 ```shell
-curl -X CANCEL "https://api.exbito.com/apiv2/orders/12345" -H "X-Api-Key: $MY_API_KEY" -H "X-Api-Secret: $MY_API_KEY" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "marketName=BTC_USDT"
+curl -X CANCEL "https://api.exbito.com/apiv2/orders/12345?marketName=BTC_USDT" -H "X-Api-Key: $MY_API_KEY" -H "X-Api-Secret: $MY_API_KEY"
 
 ```
 
@@ -115,11 +110,8 @@ const axios = require('axios');
 
 axios({
   method: 'cancel',
-  url: 'https://api.exbito.com/apiv2/orders/12345',
+  url: 'https://api.exbito.com/apiv2/orders/12345?marketName=BTC_USDT',
   headers: {'X-Api-Key': MY_API_KEY, 'X-Api-Secret': MY_API_SECRET},
-  data: {
-    marketName: 'BTC_USDT',
-  }
 });
 ```
 
@@ -156,7 +148,7 @@ Parameter | Description
 --------- | -----------
 ORDER_ID | Order ID (on exbito side)
 
-### Form Parameters
+### Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
@@ -166,25 +158,25 @@ market | - | Name of the market
 The rate-limit for this endpoint is 10 req/min.
 </aside>
 
-## Get a Specific Market
+## Get list of Orders
 
 ```python
 import requests
 
 requests.request(
   'GET',
-  f'https://api.exbito.com/apiv2/markets/BTC_USDT'
+  f'https://api.exbito.com/apiv2/orders?status=pending'
 ).json()
 ```
 
 ```shell
-curl "https://api.exbito.com/apiv2/markets/BTC_USDT"
+curl "https://api.exbito.com/apiv2/orders?status=pending"
 ```
 
 ```javascript
 const axios = require('axios');
 
-axios.get('https://api.exbito.com/apiv2/markets/BTC_USDT')
+axios.get('https://api.exbito.com/apiv2/orders?status=pending')
 ```
 
 > The above command returns JSON structured like this:
@@ -192,36 +184,38 @@ axios.get('https://api.exbito.com/apiv2/markets/BTC_USDT')
 ```json
 [
   {
-    "name": "BTC_USDT",
-    "minAmount": "0.00001000",
-    "baseCurrencySymbol": "BTC",
-    "quoteCurrencySymbol": "USDT",
-    "buyAmountMin": "0.00010000",
-    "buyAmountMax": "10.00000000",
-    "sellAmountMin": "0.00010000",
-    "sellAmountMax": "10.00000000",
-    "quoteMin": "10.000000",
-    "quoteMax": "10000000.000000",
-    "isVisible": true,
-    "isEnable": true,
-    "defaultDepthInterval": "10.000000",
-    "priceStep": "1.000000",
-    "amountStep": "0.00001000",
-    "depthIntervalList": [
-      "0",
-      "10.000000",
-      "100.000000",
-      "1000.000000"
-    ]
+    "id": 193710506,
+    "createdAt": "2021-02-23T05:56:41.123456Z",
+    "modifiedAt": "2021-02-23T05:56:41.123456Z",
+    "finishedAt": None,
+    "market": "BTC_USDT",
+    "user": 12345,
+    "type": "limit",
+    "side": "buy",
+    "amount": "0.01234000",
+    "price": "35001",
+    "takerFeeRate": "0",
+    "makerFeeRate": "0",
+    "isAmountAsQuote": False,
+    "loadStatus": "partiallyCancelled"
   }
 ]
 ```
 
-This endpoint retrieves one single markets.
+This endpoint retrieves a list of orders.
 
 ### HTTP Request
 
-`GET https://api.exbito.com/apiv2/markets`
+`GET https://api.exbito.com/apiv2/orders`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+status | - | (Mandatory) `pending` or `finished`
+marketName | - | Name of the market
+offset | - | Offset
+limit | - | Limit
 
 <aside class="notice">
 The rate-limit for this endpoint is 10 req/min.
