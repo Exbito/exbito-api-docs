@@ -357,7 +357,7 @@
                     <a href="#cancel-an-order" class="toc-h2 toc-link" data-title="Cancel an Order">Cancel an Order</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-market" class="toc-h2 toc-link" data-title="Get a Specific Market">Get a Specific Market</a>
+                    <a href="#get-list-of-orders" class="toc-h2 toc-link" data-title="Get list of Orders">Get list of Orders</a>
                   </li>
               </ul>
           </li>
@@ -988,7 +988,7 @@ The `interval` value must be formatted with the exact precision of the QuoteCurr
 <p>This endpoint post a new markets.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>CREATE https://api.exbito.com/apiv2/orders</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<h3 id='form-parameters'>Form Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1030,16 +1030,16 @@ The rate-limit for this endpoint is 10 req/min.
 
 <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span>
   <span class="s">'CANCEL'</span><span class="p">,</span>
-  <span class="sa">f</span><span class="s">'https://api.exbito.com/apiv2/orders/12345'</span><span class="p">,</span>
+  <span class="sa">f</span><span class="s">'https://api.exbito.com/apiv2/orders/12345?marketName=BTC_USDT'</span><span class="p">,</span>
   <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'X-Api-Key'</span><span class="p">:</span> <span class="n">MY_API_KEY</span><span class="p">,</span> <span class="s">'X-Api-Secret'</span><span class="p">:</span> <span class="n">MY_API_SECRET</span><span class="p">},</span>
 <span class="p">).</span><span class="n">json</span><span class="p">()</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> CANCEL <span class="s2">"https://api.exbito.com/apiv2/orders/12345"</span> <span class="nt">-H</span> <span class="s2">"X-Api-Key: </span><span class="nv">$MY_API_KEY</span><span class="s2">"</span> <span class="nt">-H</span> <span class="s2">"X-Api-Secret: </span><span class="nv">$MY_API_KEY</span><span class="s2">"</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> CANCEL <span class="s2">"https://api.exbito.com/apiv2/orders/12345?marketName=BTC_USDT"</span> <span class="nt">-H</span> <span class="s2">"X-Api-Key: </span><span class="nv">$MY_API_KEY</span><span class="s2">"</span> <span class="nt">-H</span> <span class="s2">"X-Api-Secret: </span><span class="nv">$MY_API_KEY</span><span class="s2">"</span>
 
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="nx">axios</span><span class="p">({</span>
   <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">cancel</span><span class="dl">'</span><span class="p">,</span>
-  <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://api.exbito.com/apiv2/orders/12345</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://api.exbito.com/apiv2/orders/12345?marketName=BTC_USDT</span><span class="dl">'</span><span class="p">,</span>
   <span class="na">headers</span><span class="p">:</span> <span class="p">{</span><span class="dl">'</span><span class="s1">X-Api-Key</span><span class="dl">'</span><span class="p">:</span> <span class="nx">MY_API_KEY</span><span class="p">,</span> <span class="dl">'</span><span class="s1">X-Api-Secret</span><span class="dl">'</span><span class="p">:</span> <span class="nx">MY_API_SECRET</span><span class="p">},</span>
 <span class="p">});</span>
 </code></pre></div>
@@ -1078,53 +1078,89 @@ The rate-limit for this endpoint is 10 req/min.
 <td>Order ID (on exbito side)</td>
 </tr>
 </tbody></table>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>market</td>
+<td>-</td>
+<td>Name of the market</td>
+</tr>
+</tbody></table>
 
 <aside class="notice">
 The rate-limit for this endpoint is 10 req/min.
 </aside>
-<h2 id='get-a-specific-market'>Get a Specific Market</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+<h2 id='get-list-of-orders'>Get list of Orders</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span>
   <span class="s">'GET'</span><span class="p">,</span>
-  <span class="sa">f</span><span class="s">'https://api.exbito.com/apiv2/markets/BTC_USDT'</span>
+  <span class="sa">f</span><span class="s">'https://api.exbito.com/apiv2/orders?status=pending'</span>
 <span class="p">).</span><span class="n">json</span><span class="p">()</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.exbito.com/apiv2/markets/BTC_USDT"</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.exbito.com/apiv2/orders?status=pending"</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
 
-<span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.exbito.com/apiv2/markets/BTC_USDT</span><span class="dl">'</span><span class="p">)</span>
+<span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.exbito.com/apiv2/orders?status=pending</span><span class="dl">'</span><span class="p">)</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"minAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00001000"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"baseCurrencySymbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"quoteCurrencySymbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"buyAmountMin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00010000"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"buyAmountMax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00000000"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"sellAmountMin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00010000"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"sellAmountMax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00000000"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"quoteMin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.000000"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"quoteMax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10000000.000000"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"isVisible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"isEnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"defaultDepthInterval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.000000"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"priceStep"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.000000"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"amountStep"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00001000"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"depthIntervalList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"10.000000"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"100.000000"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"1000.000000"</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">193710506</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-02-23T05:56:41.123456Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"modifiedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-02-23T05:56:41.123456Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"finishedAt"</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"market"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01234000"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35001"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"takerFeeRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"makerFeeRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isAmountAsQuote"</span><span class="p">:</span><span class="w"> </span><span class="err">False</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"loadStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"partiallyCancelled"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint retrieves one single markets.</p>
+<p>This endpoint retrieves a list of orders.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
-<p><code>GET https://api.exbito.com/apiv2/markets</code></p>
+<p><code>GET https://api.exbito.com/apiv2/orders</code></p>
+<h3 id='query-parameters-2'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>-</td>
+<td>(Mandatory) <code>pending</code> or <code>finished</code></td>
+</tr>
+<tr>
+<td>marketName</td>
+<td>-</td>
+<td>Name of the market</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>-</td>
+<td>Offset</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>-</td>
+<td>Limit</td>
+</tr>
+</tbody></table>
 
 <aside class="notice">
 The rate-limit for this endpoint is 10 req/min.
