@@ -74,7 +74,7 @@ This endpoint post a new markets.
 
 `CREATE https://api.exbito.com/apiv2/orders`
 
-### Query Parameters
+### Form Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
@@ -97,11 +97,16 @@ requests.request(
   'CANCEL',
   f'https://api.exbito.com/apiv2/orders/12345',
   headers={'X-Api-Key': MY_API_KEY, 'X-Api-Secret': MY_API_SECRET},
+  params={
+    'marketName': 'BTC_USDT',
+  }
 ).json()
 ```
 
 ```shell
-curl -X CANCEL "https://api.exbito.com/apiv2/orders/12345" -H "X-Api-Key: $MY_API_KEY" -H "X-Api-Secret: $MY_API_KEY"
+curl -X CANCEL "https://api.exbito.com/apiv2/orders/12345" -H "X-Api-Key: $MY_API_KEY" -H "X-Api-Secret: $MY_API_KEY" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "marketName=BTC_USDT"
 
 ```
 
@@ -112,6 +117,9 @@ axios({
   method: 'cancel',
   url: 'https://api.exbito.com/apiv2/orders/12345',
   headers: {'X-Api-Key': MY_API_KEY, 'X-Api-Secret': MY_API_SECRET},
+  data: {
+    marketName: 'BTC_USDT',
+  }
 });
 ```
 
@@ -147,6 +155,12 @@ This endpoint cancels a pending order.
 Parameter | Description
 --------- | -----------
 ORDER_ID | Order ID (on exbito side)
+
+### Form Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+market | - | Name of the market
 
 <aside class="notice">
 The rate-limit for this endpoint is 10 req/min.
