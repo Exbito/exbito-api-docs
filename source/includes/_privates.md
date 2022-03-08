@@ -54,7 +54,7 @@ axios({
   "id": 193710506,
   "createdAt": "2021-02-23T05:56:41.123456Z",
   "modifiedAt": "2021-02-23T05:56:41.123456Z",
-  "finishedAt": None,
+  "finishedAt": null,
   "market": "BTC_USDT",
   "user": 12345,
   "type": "limit",
@@ -63,7 +63,7 @@ axios({
   "price": "35001",
   "takerFeeRate": "0",
   "makerFeeRate": "0",
-  "isAmountAsQuote": False,
+  "isAmountAsQuote": false,
   "loadStatus": "empty"
 }
 ```
@@ -122,7 +122,7 @@ axios({
   "id": 193710506,
   "createdAt": "2021-02-23T05:56:41.123456Z",
   "modifiedAt": "2021-02-23T05:56:41.123456Z",
-  "finishedAt": None,
+  "finishedAt": null,
   "market": "BTC_USDT",
   "user": 12345,
   "type": "limit",
@@ -131,7 +131,7 @@ axios({
   "price": "35001",
   "takerFeeRate": "0",
   "makerFeeRate": "0",
-  "isAmountAsQuote": False,
+  "isAmountAsQuote": false,
   "loadStatus": "partiallyCancelled"
 }
 ```
@@ -187,7 +187,7 @@ axios.get('https://api.exbito.com/apiv2/orders?status=pending')
     "id": 193710506,
     "createdAt": "2021-02-23T05:56:41.123456Z",
     "modifiedAt": "2021-02-23T05:56:41.123456Z",
-    "finishedAt": None,
+    "finishedAt": null,
     "market": "BTC_USDT",
     "user": 12345,
     "type": "limit",
@@ -196,7 +196,7 @@ axios.get('https://api.exbito.com/apiv2/orders?status=pending')
     "price": "35001",
     "takerFeeRate": "0",
     "makerFeeRate": "0",
-    "isAmountAsQuote": False,
+    "isAmountAsQuote": false,
     "loadStatus": "partiallyCancelled"
   }
 ]
