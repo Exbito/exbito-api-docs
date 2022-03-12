@@ -220,3 +220,51 @@ limit | - | Limit
 <aside class="notice">
 The rate-limit for this endpoint is 10 req/min.
 </aside>
+
+## Get list of Balances
+
+```python
+import requests
+
+requests.request(
+  'GET',
+  f'https://api.exbito.com/apiv2/balances
+).json()
+```
+
+```shell
+curl "https://api.exbito.com/apiv2/balances"
+```
+
+```javascript
+const axios = require('axios');
+
+axios.get('https://api.exbito.com/apiv2/balances')
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "name": "ETH",
+    "available": "9138",
+    "freeze": "0"
+  },
+  {
+    "name": "BTC",
+    "available": "101",
+    "freeze": "10"
+  }
+]
+```
+
+This endpoint retrieves a list of balances.
+
+### HTTP Request
+
+`GET https://api.exbito.com/apiv2/balances`
+
+<aside class="notice">
+The rate-limit for this endpoint is 10 req/min.
+</aside>
