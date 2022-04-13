@@ -54,7 +54,7 @@ axios({
   "id": 193710506,
   "createdAt": "2021-02-23T05:56:41.123456Z",
   "modifiedAt": "2021-02-23T05:56:41.123456Z",
-  "finishedAt": None,
+  "finishedAt": null,
   "market": "BTC_USDT",
   "user": 12345,
   "type": "limit",
@@ -63,7 +63,7 @@ axios({
   "price": "35001",
   "takerFeeRate": "0",
   "makerFeeRate": "0",
-  "isAmountAsQuote": False,
+  "isAmountAsQuote": false,
   "loadStatus": "empty"
 }
 ```
@@ -122,7 +122,7 @@ axios({
   "id": 193710506,
   "createdAt": "2021-02-23T05:56:41.123456Z",
   "modifiedAt": "2021-02-23T05:56:41.123456Z",
-  "finishedAt": None,
+  "finishedAt": null,
   "market": "BTC_USDT",
   "user": 12345,
   "type": "limit",
@@ -131,7 +131,7 @@ axios({
   "price": "35001",
   "takerFeeRate": "0",
   "makerFeeRate": "0",
-  "isAmountAsQuote": False,
+  "isAmountAsQuote": false,
   "loadStatus": "partiallyCancelled"
 }
 ```
@@ -187,7 +187,7 @@ axios.get('https://api.exbito.com/apiv2/orders?status=pending')
     "id": 193710506,
     "createdAt": "2021-02-23T05:56:41.123456Z",
     "modifiedAt": "2021-02-23T05:56:41.123456Z",
-    "finishedAt": None,
+    "finishedAt": null,
     "market": "BTC_USDT",
     "user": 12345,
     "type": "limit",
@@ -196,7 +196,7 @@ axios.get('https://api.exbito.com/apiv2/orders?status=pending')
     "price": "35001",
     "takerFeeRate": "0",
     "makerFeeRate": "0",
-    "isAmountAsQuote": False,
+    "isAmountAsQuote": false,
     "loadStatus": "partiallyCancelled"
   }
 ]
@@ -216,6 +216,205 @@ status | - | (Mandatory) `pending` or `finished`
 marketName | - | Name of the market
 offset | - | Offset
 limit | - | Limit
+
+<aside class="notice">
+The rate-limit for this endpoint is 10 req/min.
+</aside>
+
+## Get list of Balances
+
+```python
+import requests
+
+requests.request(
+  'GET',
+  f'https://api.exbito.com/apiv2/balances
+).json()
+```
+
+```shell
+curl "https://api.exbito.com/apiv2/balances"
+```
+
+```javascript
+const axios = require('axios');
+
+axios.get('https://api.exbito.com/apiv2/balances')
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "name": "ETH",
+    "available": "9138",
+    "freeze": "0"
+  },
+  {
+    "name": "BTC",
+    "available": "101",
+    "freeze": "10"
+  }
+]
+```
+
+This endpoint retrieves a list of balances.
+
+### HTTP Request
+
+`GET https://api.exbito.com/apiv2/balances`
+
+<aside class="notice">
+The rate-limit for this endpoint is 10 req/min.
+</aside>
+
+## Show cryptocurrency deposit info
+
+```python
+import requests
+
+url = "https://api.exbito.com/apiv2/deposits?cryptocurrencySymbol=BTC&chain=btc"
+
+payload={}
+files={}
+headers = {}
+
+response = requests.request("SHOW", url, headers=headers, data=payload, files=files)
+
+print(response.text)
+```
+
+```shell
+curl --location --request SHOW 'https://api.exbito.com/apiv2/deposits?cryptocurrencySymbol=BTC&chain=btc'
+```
+
+```javascript
+var axios = require('axios');
+var FormData = require('form-data');
+var data = new FormData();
+
+var config = {
+  method: 'show',
+  url: 'https://api.exbito.com/apiv2/deposits?cryptocurrencySymbol=BTC&chain=btc',
+  headers: { 
+    ...data.getHeaders()
+  },
+  data : data
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 1,
+  "user": "1",
+  "extra": null,
+  "creation": "2019-03-19T12:11:10.337+03:00",
+  "expiration": null,
+  "address": "1D6CqUvHtQRXU4TZrrj5j1iofo8f4oXyLj",
+  "tag": null
+}
+```
+
+This endpoint retrieves info of a currency.
+
+### HTTP Request
+
+`SHOW https://api.exbito.com/apiv2/deposits`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+cryptocurrencySymbol | - | (Mandatory)
+chain | - | (Mandatory) Chain of cryptocurrency
+
+<aside class="notice">
+The rate-limit for this endpoint is 10 req/min.
+</aside>
+
+## Renew cryptocurrency deposit info
+
+```python
+import requests
+
+url = "https://api.exbito.com/apiv2/deposits?cryptocurrencySymbol=BTC&chain=btc"
+
+payload={}
+files={}
+headers = {}
+
+response = requests.request("RENEW", url, headers=headers, data=payload, files=files)
+
+print(response.text)
+
+```
+
+```shell
+curl --location --request RENEW 'https://api.exbito.com/apiv2/deposits?cryptocurrencySymbol=BTC&chain=btc'
+```
+
+```javascript
+var axios = require('axios');
+var FormData = require('form-data');
+var data = new FormData();
+
+var config = {
+  method: 'renew',
+  url: 'https://api.exbito.com/apiv2/deposits?cryptocurrencySymbol=BTC&chain=btc',
+  headers: { 
+    ...data.getHeaders()
+  },
+  data : data
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 1,
+  "user": "1",
+  "extra": null,
+  "creation": "2019-03-19T12:11:10.337+03:00",
+  "expiration": null,
+  "address": "1D6CqUvHtQRXU4TZrrj5j1iofo8f4oXyLj",
+  "tag": null
+}
+```
+
+This endpoint renew deposit info.
+
+### HTTP Request
+
+`RENEW https://api.exbito.com/apiv2/deposits`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+cryptocurrencySymbol | - | (Mandatory)
+chain | - | (Mandatory) Chain of cryptocurrency
 
 <aside class="notice">
 The rate-limit for this endpoint is 10 req/min.
